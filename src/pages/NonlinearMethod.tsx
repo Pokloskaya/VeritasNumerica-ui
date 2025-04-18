@@ -52,7 +52,7 @@ export const NonlinearMethod = () => {
   }, [])
 
   const post = () => {
-    fetch(`http://localhost:3000/nonlinear/${method}`, {
+    fetch(`http://localhost:8000/nonlinear/${method}`, {
       method: "POST", headers: {
         "Content-Type": "application/json"
       }, body: JSON.stringify(values)

@@ -30,7 +30,7 @@ export const CubicSpline = () => {
   const [showPlot, setShowPlot] = useState(false)
 
   const post = () => {
-    fetch(`http://localhost:3000/interpolation/${method}`, {
+    fetch(`http://localhost:8000/interpolation/${method}`, {
       method: "POST", headers: {
         "Content-Type": "application/json"
       }, body: JSON.stringify(values)

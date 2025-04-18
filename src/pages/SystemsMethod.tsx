@@ -35,7 +35,7 @@ export const SystemsMethod = () => {
   const [showTable, setShowTable] = useState(false)
 
   const post = () => {
-    fetch(`http://localhost:3000/systems/${method}`, {
+    fetch(`http://localhost:8000/systems/${method}`, {
       method: "POST", headers: {
         "Content-Type": "application/json"
       }, body: JSON.stringify(values)
