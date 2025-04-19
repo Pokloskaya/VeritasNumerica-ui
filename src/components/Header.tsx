@@ -14,7 +14,7 @@ export const Header = () => {
           className="hover:-translate-y-1 active:translate-y-1 transition-all"
         >
           <img
-            src="https://sdmntprwestus.oaiusercontent.com/files/00000000-38ec-6230-b78a-b04305962d85/raw?se=2025-04-18T20%3A05%3A27Z&sp=r&sv=2024-08-04&sr=b&scid=5e06a8ff-9e12-53ba-a879-df8113236840&skoid=e4438ed3-2a6f-4fd3-bf63-222012dc627c&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-04-17T20%3A25%3A39Z&ske=2025-04-18T20%3A25%3A39Z&sks=b&skv=2024-08-04&sig=NZyY51Zzrsr7BUzi7nmphH6t/oSNylSIdTUNK2/iAkg%3D"
+            src="https://i.ibb.co/kVzSzPJ8/veritas-tab.png"
             alt="avatar"
             className="h-[3.5rem] w-[3.5rem] rounded-lg"
           />

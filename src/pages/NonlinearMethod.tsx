@@ -12,7 +12,8 @@ import {
   FixedPointInput,
   FalsePositionInput,
   NewtonInput,
-  SecantInput
+  SecantInput,
+  CompareInput
 } from '../components/NonlinearInputs.tsx'
 
 export interface NonlinearMethodProps {
@@ -41,6 +42,11 @@ export const NonlinearMethod = () => {
 
   const refW = useRef<HTMLDivElement>(null)
   const refH = useRef<HTMLDivElement>(null)
+
+  const [compareResults, setCompareResults] = useState<any[]>([]);
+  const [bestMethod, setBestMethod] = useState<string | null>(null);
+  const [bestRoot, setBestRoot] = useState<number | null>(null);
+
 
   useEffect(() => {
     if (refW.current) {
@@ -80,6 +86,32 @@ export const NonlinearMethod = () => {
     }).catch(() => setAlert(true))
   }
 
+  const compareAll = () => {
+    fetch("http://localhost:8000/nonlinear/compare_all", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(values)
+    })
+      .then(res => res.json())
+      .then(json => {
+        if (json.success) {
+          setCompareResults(json.results);
+          setBestMethod(json.best_method);
+          setBestRoot(json.best_root);
+          setAlert(false);
+        } else {
+          setCompareResults([]);
+          setAlert(true);
+          setError("Comparison failed.");
+        }
+      })
+      .catch(() => {
+        setCompareResults([]);
+        setAlert(true);
+        setError("An unexpected error occurred.");
+      });
+  };  
+
   let { method } = useParams()
   return (
     <div className="text-white">
@@ -98,7 +130,9 @@ export const NonlinearMethod = () => {
                 ? <FalsePositionInput send={setValues} />
                 : (method === "newton" || method === "multiple_roots"
                   ? <NewtonInput send={setValues} />
-                  : <SecantInput send={setValues} />)))}
+                  : (method === "compare_all"
+                    ? <CompareInput send={setValues} />
+                    : <SecantInput send={setValues} />))))}
           <div className="flex items-center justify-center pt-7">
             <ActionButton text="Calculate"
               func={
@@ -108,6 +142,17 @@ export const NonlinearMethod = () => {
                   setShowRoot(false)
                 }
               } />
+            <ActionButton text="Calculate"
+              func={() => {
+                post()
+                setAlert(false)
+                setShowRoot(false)
+              }}
+            />
+
+            {method === "compare_all" && (
+              <ActionButton text="Compare Methods" func={compareAll} />
+            )}
           </div>
         </div>
         <div ref={refW}  className="w-full md:w-7/12 p-1 h-fit bg-[#2B2931] rounded-lg">
@@ -129,6 +174,44 @@ export const NonlinearMethod = () => {
         />}
         <div className="pt-5 w-full">
           {showTable && <DataTable rows={rows} columns={columns} />}
+          {compareResults.length > 0 && 
+          (
+            <div className="pt-10">
+              <h3 className="text-xl font-semibold mb-3">Comparison Results</h3>
+              <div className="overflow-x-auto text-sm bg-[#2B2931] p-3 rounded-xl">
+                <table className="table-auto w-full text-left border-collapse">
+                  <thead>
+                    <tr>
+                      <th className="px-4 py-2">Method</th>
+                      <th className="px-4 py-2">Success</th>
+                      <th className="px-4 py-2">Root</th>
+                      <th className="px-4 py-2">Iterations</th>
+                      <th className="px-4 py-2">Final Error</th>
+                      <th className="px-4 py-2">Error Message</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {compareResults.map((r, i) => (
+                      <tr key={i} className="border-t">
+                        <td className="px-4 py-2">{r.method}</td>
+                        <td className="px-4 py-2">{r.success ? "✅" : "❌"}</td>
+                        <td className="px-4 py-2">{r.root ?? "-"}</td>
+                        <td className="px-4 py-2">{r.iterations ?? "-"}</td>
+                        <td className="px-4 py-2">{r.final_error?.toFixed(6) ?? "-"}</td>
+                        <td className="px-4 py-2 text-red-400">{r.error_msg ?? "-"}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              {bestMethod && (
+                <div className="mt-5 text-lg">
+                  🏆 <strong>Best method:</strong> {bestMethod} → x = {bestRoot}
+                </div>
+              )}
+            </div>
+          )
+          }
         </div>
       </div>
     </div>
