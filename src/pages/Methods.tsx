@@ -8,7 +8,7 @@ import interpolation from '../assets/interpolation.svg'
 
 // Arrays to create the methods
 let graphicMethodArray = ["plot_function"]
-let nonlinearArray = ["bisection", "false_position", "fixed_point", "newton", "secant", "multiple_roots"]
+let nonlinearArray = ["bisection", "false_position", "fixed_point", "newton", "secant", "multiple_roots", "compare_all"]
 let matrixArray = ["jacobi", "gauss-seidel", "sor"]
 let interpolationArray = ["vandermonde", "newton", "lagrange", "linear_spline", "cubic_spline"]
 

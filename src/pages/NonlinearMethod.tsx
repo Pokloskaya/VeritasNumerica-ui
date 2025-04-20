@@ -134,24 +134,23 @@ export const NonlinearMethod = () => {
                     ? <CompareInput send={setValues} />
                     : <SecantInput send={setValues} />))))}
           <div className="flex items-center justify-center pt-7">
-            <ActionButton text="Calculate"
-              func={
-                () => {
-                  post()
-                  setAlert(false)
-                  setShowRoot(false)
-                }
-              } />
-            <ActionButton text="Calculate"
-              func={() => {
-                post()
-                setAlert(false)
-                setShowRoot(false)
-              }}
-            />
-
-            {method === "compare_all" && (
-              <ActionButton text="Compare Methods" func={compareAll} />
+            {method === "compare_all" ? (
+              <ActionButton text="Calculate" func={compareAll} />
+            ) : (
+              <div className="flex flex-col sm:flex-row gap-4">
+                <ActionButton
+                  text="Calculate"
+                  func={() => {
+                    post()
+                    setAlert(false)
+                    setShowRoot(false)
+                  }}
+                />
+                <ActionButton
+                  text="Compare Methods"
+                  func={() => window.location.href = "/methods/nonlinear/compare_all"}
+                />
+              </div>
             )}
           </div>
         </div>

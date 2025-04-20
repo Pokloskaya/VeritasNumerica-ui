@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import gitHubIcon from '../assets/Github.svg'
-import linkedInIcon from '../assets/LinkedIn.svg'
 
 export const Header = () => {
   let imgStyle = "h-[2.5rem]"
@@ -28,22 +27,14 @@ export const Header = () => {
           <span className={linkStyle}>Methods</span>
         </Link>
       </div>
-      <div className="flex w-[6.5rem] justify-between sm:p-0">
+      <div className="flex w-[3rem] justify-center sm:p-0">
         <a
-          href="https://github.com/Adrephos"
+          href="https://github.com/Pokloskaya/VeritasNumerica-core"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:-translate-y-1 active:translate-y-1 transition-all"
         >
           <img className={imgStyle} src={gitHubIcon} alt="GitHub logo" />
-        </a>
-        <a
-          href="https://www.linkedin.com/in/adrephos/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:-translate-y-1 active:translate-y-1 transition-all"
-        >
-          <img className={imgStyle} src={linkedInIcon} alt="LinkedIn logo" />
         </a>
       </div>
     </div>
