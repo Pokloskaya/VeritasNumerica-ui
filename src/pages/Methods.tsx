@@ -9,7 +9,7 @@ import interpolation from '../assets/interpolation.svg'
 // Arrays to create the methods
 let graphicMethodArray = ["plot_function"]
 let nonlinearArray = ["bisection", "false_position", "fixed_point", "newton", "secant", "multiple_roots", "compare_all"]
-let matrixArray = ["jacobi", "gauss-seidel", "sor"]
+let matrixArray = ["jacobi", "gauss-seidel", "sor", "compare_all"]
 let interpolationArray = ["vandermonde", "newton", "lagrange", "linear_spline", "cubic_spline"]
 
 export const displayMethod = (method: string) => {
