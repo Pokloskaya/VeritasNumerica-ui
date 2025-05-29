@@ -10,7 +10,7 @@ import interpolation from '../assets/interpolation.svg'
 let graphicMethodArray = ["plot_function"]
 let nonlinearArray = ["bisection", "false_position", "fixed_point", "newton", "secant", "multiple_roots", "compare_all"]
 let matrixArray = ["jacobi", "gauss-seidel", "sor", "compare_all"]
-let interpolationArray = ["vandermonde", "newton", "lagrange", "linear_spline", "cubic_spline"]
+let interpolationArray = ["vandermonde", "newton", "lagrange", "linear_spline", "cubic_spline", "compare_all"]
 
 export const displayMethod = (method: string) => {
   // Replace underscores with spaces and make the first letter uppercase

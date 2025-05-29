@@ -71,16 +71,22 @@ export const Lagrange = () => {
       <div className="flex flex-row gap-10 md:gap-0 justify-between mx-[3rem] lg:mx-[7rem] xl:mx-[11rem] mb-4">
         <div className="flex flex-col gap-5 items-center pt-12 w-full">
           <PointsInput xPoints={xPoints} yPoints={yPoints} setXPoints={setXPoints} setYPoints={setYPoints} />
-          <ActionButton text="Calculate"
-            func={
-              () => {
-                setValues({ x: xPoints, y: yPoints })
-                setPolynomial("")
-                setTexPolynomial("")
-                setShowPlot(false)
-                setAlert(false)
-              }
-            } />
+
+          <ActionButton 
+            text="Calculate"
+            func={() => {
+              setValues({ x: xPoints, y: yPoints });
+              setPolynomial("");
+              setTexPolynomial("");
+              setShowPlot(false);
+              setAlert(false);
+            }}
+          />
+
+          <ActionButton
+            text="Compare Methods"
+            func={() => window.location.href = "/methods/interpolation/compare_all"}
+          />
         </div>
         {showPlot &&
           <div className="flex flex-col items-center w-full gap-16 pt-10">

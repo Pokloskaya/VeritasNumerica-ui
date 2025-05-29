@@ -84,6 +84,10 @@ export const Vandermonde = () => {
                 setAlert(false)
               }
             } />
+            <ActionButton
+            text="Compare Methods"
+            func={() => window.location.href = "/methods/interpolation/compare_all"}
+          />
         </div>
         {showPlot &&
           <div className="flex flex-col items-center w-full gap-16 pt-10">

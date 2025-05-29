@@ -109,16 +109,24 @@ export const SystemsMethod = () => {
             ? <SORInput send={setValues} />
             : <JacobiGaussInput send={setValues} />}
         <div className="flex flex-wrap gap-4 items-center justify-center pt-12 w-full">
-          <ActionButton text="Calculate"
+          <ActionButton
+            text="Calculate"
             func={() => {
-              post()
-              setAlert(false)
-              setShowRoot(false)
+              if (method === "compare_all") {
+                compareAll()
+              } else {
+                post()
+                setAlert(false)
+                setShowRoot(false)
+              }
             }}
           />
-          {method === "compare_all" && (
-            <ActionButton text="Compare Methods" func={compareAll} />
-          )}
+          {method !== "compare_all" && (
+          <ActionButton
+            text="Compare Methods"
+            func={() => window.location.href = "/methods/systems/compare_all"}
+          />
+        )}
         </div>
       </div>
       <div className="flex flex-wrap justify-between px-[3rem] xl:px-[11rem] pb-2">

@@ -11,6 +11,7 @@ import { NewtonInterpolant } from './pages/NewtonInterpolant.tsx'
 import { Lagrange } from './pages/Lagrange.tsx'
 import { LinearSpline } from './pages/LinearSpline.tsx'
 import { CubicSpline } from './pages/CubicSpline.tsx'
+import { CompareAllInterpolation } from './pages/CompareAllInterpolation.tsx';
 
 let router = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ let router = createBrowserRouter([
   {
     path: "methods/plot/plot_function",
     element: <Plot />,
+  },
+  {
+  path: "methods/interpolation/compare_all",
+  element: <CompareAllInterpolation />
   }
 ]);
 
@@ -62,4 +67,3 @@ function App() {
 }
 
 export default App
-

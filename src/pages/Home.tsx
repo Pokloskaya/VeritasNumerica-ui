@@ -12,7 +12,7 @@ export const Home = () => {
         <img src={piGuy} alt="piGuy" className="h-[25rem]" />
       </div>
       <div className="flex items-center justify-center py-[4rem]">
-        <NormalButton text="Comenzar" href="/methods" />
+        <NormalButton text="Start" href="/methods" />
       </div>
     </div>
   )
